@@ -1,5 +1,5 @@
 {
-    "name": "davidrjenni/lsif-php",
+    "name": "adrum/lsif-php",
     "description": "Language Server Indexing Format (LSIF) generator for PHP",
     "license": "MIT",
     "keywords": [
@@ -30,17 +30,16 @@
         "php": "^8.0",
         "ext-json": "*",
         "composer-runtime-api": "^2.2",
-        "nikic/php-parser": "^4.13",
-        "phpstan/phpdoc-parser": "^1.4"
+        "nikic/php-parser": "^5.4",
+        "phpstan/phpdoc-parser": "^2.0"
     },
     "require-dev": {
         "phpstan/extension-installer": "^1.1",
-        "phpstan/phpstan": "^1.4",
-        "phpstan/phpstan-deprecation-rules": "^1.0",
-        "phpstan/phpstan-php-parser": "^1.1",
-        "phpstan/phpstan-phpunit": "^1.0",
-        "phpstan/phpstan-strict-rules": "^1.1",
-        "phpunit/phpunit": "^9.5",
+        "phpstan/phpstan": "^2.0",
+        "phpstan/phpstan-deprecation-rules": "^2.0",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpstan/phpstan-strict-rules": "^2.0",
+        "phpunit/phpunit": "^11.0",
         "squizlabs/php_codesniffer": "^3.6"
     },
     "scripts": {

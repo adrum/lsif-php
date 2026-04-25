@@ -12,6 +12,8 @@ use PhpParser\Node\Name;
 use PhpParser\Node\Stmt\ClassConst;
 use PhpParser\Node\Stmt\ClassLike;
 use PhpParser\Node\Stmt\ClassMethod;
+use PhpParser\Node\Stmt\Class_;
+use PhpParser\Node\Stmt\Function_;
 use PhpParser\Node\Stmt\Property;
 use PhpParser\Node\VarLikeIdentifier;
 
@@ -97,7 +99,7 @@ final class IdentifierBuilder
             switch ($name) {
                 case 'parent':
                     $classLike = ClassLikeUtil::nearestClassLike($node);
-                    if (isset($classLike->extends)) {
+                    if ($classLike instanceof Class_ && $classLike->extends !== null) {
                         return self::fqClassName($classLike->extends);
                     }
                     // fallthrough
@@ -126,8 +128,9 @@ final class IdentifierBuilder
 
     private static function functionLikeName(FunctionLike $node): string
     {
-        return !isset($node->name)
-            ? "anon-func-{$node->getStartTokenPos()}()"
-            : "{$node->name}()";
+        if ($node instanceof Function_ || $node instanceof ClassMethod) {
+            return "{$node->name}()";
+        }
+        return "anon-func-{$node->getStartTokenPos()}()";
     }
 }

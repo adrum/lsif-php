@@ -17,7 +17,6 @@ use LsifPhp\Types\IdentifierBuilder;
 use LsifPhp\Types\TypeInfo;
 use PhpParser\Node;
 use PhpParser\Node\Expr\ClassConstFetch;
-use PhpParser\Node\Expr\Error;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\NullsafeMethodCall;
 use PhpParser\Node\Expr\NullsafePropertyFetch;
@@ -196,7 +195,7 @@ final class Indexer
                 if (
                     $node instanceof ClassConstFetch
                     && $node->class instanceof Name
-                    && !$node->name instanceof Error
+                    && $node->name instanceof Identifier
                 ) {
                     $fqName = $this->typeInfo->findConstant($node->class, $node->name->toString());
                     if ($fqName !== '') {

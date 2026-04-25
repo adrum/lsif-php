@@ -128,7 +128,7 @@ final class DefinitionCollectorTest extends TestCase
         $this->assertEquals($startLine, $def->name()->getStartLine());
         $this->assertEquals($exported, $def->exported());
 
-        $filename = explode('::', $ident)[0] ?? '';
+        $filename = explode('::', $ident)[0];
         $this->assertEquals($this->documents["{$filename}.php"], $def->docId());
 
         if ($doc === null) {

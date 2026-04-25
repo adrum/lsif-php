@@ -27,8 +27,6 @@ final class NodeTraverserFactory
 
     /**
      * Creates a new AST traverser.
-     *
-     * @param Closure(Node, mixed...): void $visitor
      */
     public function create(object $newThis, Closure $visitor, mixed ...$args): NodeTraverserInterface
     {

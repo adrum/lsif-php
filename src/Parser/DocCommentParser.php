@@ -10,6 +10,7 @@ use PHPStan\PhpDocParser\Ast\PhpDoc\MixinTagValueNode;
 use PHPStan\PhpDocParser\Ast\PhpDoc\PhpDocNode;
 use PHPStan\PhpDocParser\Ast\Type\TypeNode;
 use PHPStan\PhpDocParser\Lexer\Lexer;
+use PHPStan\PhpDocParser\ParserConfig;
 use PHPStan\PhpDocParser\Parser\ConstExprParser;
 use PHPStan\PhpDocParser\Parser\PhpDocParser;
 use PHPStan\PhpDocParser\Parser\TokenIterator;
@@ -27,10 +28,11 @@ final class DocCommentParser
 
     public function __construct()
     {
-        $constExprParser = new ConstExprParser();
-        $typeParser = new TypeParser($constExprParser);
-        $this->parser = new PhpDocParser($typeParser, $constExprParser);
-        $this->lexer = new Lexer();
+        $config = new ParserConfig(usedAttributes: []);
+        $constExprParser = new ConstExprParser($config);
+        $typeParser = new TypeParser($config, $constExprParser);
+        $this->parser = new PhpDocParser($config, $typeParser, $constExprParser);
+        $this->lexer = new Lexer($config);
     }
 
     /** @return TypeNode[] */

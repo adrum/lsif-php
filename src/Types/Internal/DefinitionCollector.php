@@ -8,11 +8,13 @@ use LsifPhp\Parser\NodeTraverserFactory;
 use LsifPhp\Types\Definition;
 use LsifPhp\Types\IdentifierBuilder;
 use PhpParser\Comment\Doc;
+use PhpParser\Modifiers;
 use PhpParser\Node;
 use PhpParser\Node\Const_;
 use PhpParser\Node\Expr\Array_;
 use PhpParser\Node\Expr\Assign;
 use PhpParser\Node\Expr\Error;
+use PhpParser\Node\Expr\List_;
 use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Param;
@@ -161,7 +163,7 @@ final class DefinitionCollector
                 $name,
                 IdentifierBuilder::fqPropertyName($param->getAttribute('parent'), $name),
                 $param,
-                !((bool) ($param->flags & Class_::MODIFIER_PRIVATE)),
+                !((bool) ($param->flags & Modifiers::PRIVATE)),
                 $param->getDocComment(),
             );
         }
@@ -180,20 +182,17 @@ final class DefinitionCollector
     {
         if ($assign->var instanceof Variable) {
             $this->collectVar($docId, $assign->var, $assign->getDocComment());
-        } elseif ($assign->var instanceof Array_) {
+        } elseif ($assign->var instanceof Array_ || $assign->var instanceof List_) {
             $this->collectList($docId, $assign->var, $assign->getDocComment());
         }
     }
 
-    private function collectList(int $docId, Array_ $a, ?Doc $doc = null): void
+    private function collectList(int $docId, Array_|List_ $a, ?Doc $doc = null): void
     {
         foreach ($a->items as $item) {
-            if ($item === null) {
-                continue;
-            }
             if ($item->value instanceof Variable) {
                 $this->collectVar($docId, $item->value, $doc);
-            } elseif ($item->value instanceof Array_) {
+            } elseif ($item->value instanceof Array_ || $item->value instanceof List_) {
                 $this->collectList($docId, $item->value, $doc);
             }
         }
@@ -206,7 +205,7 @@ final class DefinitionCollector
         }
         if ($f->valueVar instanceof Variable) {
             $this->collectVar($docId, $f->valueVar);
-        } elseif ($f->valueVar instanceof Array_) {
+        } elseif ($f->valueVar instanceof Array_ || $f->valueVar instanceof List_) {
             $this->collectList($docId, $f->valueVar);
         }
     }
