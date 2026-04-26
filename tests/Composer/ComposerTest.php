@@ -19,7 +19,7 @@ final class ComposerTest extends TestCase
         $composer = Composer::parse(self::PROJECT_ROOT . 'project1');
         $name = $composer->pkgName();
 
-        $this->assertEquals('davidrjenni/test-project1', $name);
+        $this->assertEquals('adrum/test-project1', $name);
     }
 
     public function testPkgNameNotFound(): void

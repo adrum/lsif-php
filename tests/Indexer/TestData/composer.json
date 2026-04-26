@@ -1,5 +1,5 @@
 {
-    "name": "davidrjenni/test-project",
+    "name": "adrum/test-project",
     "autoload": {
         "psr-4": {
             "TestProject\\": "src/"

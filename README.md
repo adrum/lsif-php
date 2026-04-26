@@ -1,18 +1,18 @@
-# lsif-php [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/davidrjenni/lsif-php)
+# lsif-php [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/adrum/lsif-php)
 
-[![CI](https://github.com/davidrjenni/lsif-php/actions/workflows/ci.yml/badge.svg)](https://github.com/davidrjenni/lsif-php/actions/workflows/ci.yml)
-[![Coverage](https://codecov.io/gh/davidrjenni/lsif-php/branch/main/graph/badge.svg?token=4NZWCF6LZS)](https://codecov.io/gh/davidrjenni/lsif-php)
-[![License: MIT](https://img.shields.io/github/license/davidrjenni/lsif-php)](https://github.com/davidrjenni/lsif-php/blob/main/LICENSE)
-[![Packagist Version](https://img.shields.io/packagist/v/davidrjenni/lsif-php)](https://packagist.org/packages/davidrjenni/lsif-php)
-[![PHP Version](https://img.shields.io/packagist/php-v/davidrjenni/lsif-php)](https://packagist.org/packages/davidrjenni/lsif-php)
-[![Docker Image Version](https://img.shields.io/docker/v/davidrjenni/lsif-php?label=docker)](https://hub.docker.com/r/davidrjenni/lsif-php)
-[![Docker Image Size](https://img.shields.io/docker/image-size/davidrjenni/lsif-php)](https://hub.docker.com/r/davidrjenni/lsif-php)
+[![CI](https://github.com/adrum/lsif-php/actions/workflows/ci.yml/badge.svg)](https://github.com/adrum/lsif-php/actions/workflows/ci.yml)
+[![Coverage](https://codecov.io/gh/adrum/lsif-php/branch/main/graph/badge.svg?token=4NZWCF6LZS)](https://codecov.io/gh/adrum/lsif-php)
+[![License: MIT](https://img.shields.io/github/license/adrum/lsif-php)](https://github.com/adrum/lsif-php/blob/main/LICENSE)
+[![Packagist Version](https://img.shields.io/packagist/v/adrum/lsif-php)](https://packagist.org/packages/adrum/lsif-php)
+[![PHP Version](https://img.shields.io/packagist/php-v/adrum/lsif-php)](https://packagist.org/packages/adrum/lsif-php)
+[![Docker Image Version](https://img.shields.io/docker/v/adrum/lsif-php?label=docker)](https://hub.docker.com/r/adrum/lsif-php)
+[![Docker Image Size](https://img.shields.io/docker/image-size/adrum/lsif-php)](https://hub.docker.com/r/adrum/lsif-php)
 
 Language Server Indexing Format (LSIF) generator for PHP
 
 ---
 
-This repository is indexed using itself and available on [Sourcegraph](https://sourcegraph.com/github.com/davidrjenni/lsif-php).
+This repository is indexed using itself and available on [Sourcegraph](https://sourcegraph.com/github.com/adrum/lsif-php).
 
 ## Requirements
 
@@ -39,7 +39,7 @@ on:
 jobs:
   lsif-php:
     runs-on: ubuntu-latest
-    container: davidrjenni/lsif-php:main
+    container: adrum/lsif-php:main
     steps:
       - uses: actions/checkout@v3
       - name: Generate LSIF data
@@ -58,7 +58,7 @@ Add the following job to your pipeline:
 
 ```yml
 code_navigation:
-  image: davidrjenni/lsif-php:main
+  image: adrum/lsif-php:main
   artifacts:
     reports:
       lsif: dump.lsif
@@ -69,13 +69,19 @@ code_navigation:
 
 ### Manual
 
-Install [`lsif-php`](https://packagist.org/packages/davidrjenni/lsif-php)
+Install [`lsif-php`](https://packagist.org/packages/adrum/lsif-php)
 with `composer` and the
 [`src`](https://docs.sourcegraph.com/cli/quickstart) binary. Then generate
 the LSIF data and upload it:
 
 ```bash
-$ composer require --dev davidrjenni/lsif-php
+$ composer require --dev adrum/lsif-php
 $ vendor/bin/lsif-php
 $ src code-intel upload
 ```
+
+## Acknowledgements
+
+This project is a fork of [`davidrjenni/lsif-php`](https://github.com/davidrjenni/lsif-php).
+Huge thanks to [David R. Jenni](https://github.com/davidrjenni) for creating
+the original tool and laying the groundwork that made this fork possible.

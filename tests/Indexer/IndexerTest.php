@@ -72,7 +72,7 @@ final class IndexerTest extends TestCase
         );
 
         $this->assertStringContainsString(
-            '"type":"vertex","label":"packageInformation","manager":"composer","name":"davidrjenni/testdep","version":"e6d6a033761e"}',
+            '"type":"vertex","label":"packageInformation","manager":"composer","name":"adrum/testdep","version":"e6d6a033761e"}',
             $lsif,
         );
 
